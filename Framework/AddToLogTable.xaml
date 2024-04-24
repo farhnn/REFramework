@@ -5,14 +5,18 @@
     <x:Property Name="in_itemCount" Type="InArgument(x:Int32)" />
     <x:Property Name="in_LogTable" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_Reference" Type="InArgument(x:String)" />
+    <x:Property Name="in_ProcessCode" Type="InArgument(x:String)" />
   </x:Members>
+  <this:AddToLogTable.in_ProcessCode>
+    <InArgument x:TypeArguments="x:String" />
+  </this:AddToLogTable.in_ProcessCode>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>470.666666666667,1236.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>494,1094.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>AddToLogTable_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="58">
+    <scg:List x:TypeArguments="x:String" Capacity="31">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -43,10 +47,11 @@
       <x:String>System.Text.RegularExpressions</x:String>
       <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Net</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="29">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="56">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -74,25 +79,25 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="AddToLogTable" sap:VirtualizedContainerService.HintSize="480.666666666667,1132" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="AddToLogTable" sap:VirtualizedContainerService.HintSize="480.666666666667,1030" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:TimeSpan" Name="ElapsedTime" />
       <Variable x:TypeArguments="s:DateTime" Name="EndTime" />
       <Variable x:TypeArguments="x:String" Name="dbString" />
-      <Variable x:TypeArguments="x:String" Name="ProcessCode" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438.666666666667,1040" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438.666666666667,938" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="376,802" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence sap:VirtualizedContainerService.HintSize="376,700" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -125,15 +130,7 @@
               <InArgument x:TypeArguments="x:TimeSpan">[EndTime - in_startTime]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign ProcessCode" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_6">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[ProcessCode]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[regex.Match(environment.CurrentDirectory,"[^\\]+$").ToString]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xD;&#xA;processCode,&#xD;&#xA;in_reference,&#xD;&#xA;in_startTime,&#xD;&#xA;EndTime,&#xD;&#xA;elapsedTime.ToString,&#xD;&#xA;in_status,&#xD;&#xA;in_itemCount&#xD;&#xA;}]" DataTable="[in_logTable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xD;&#xA;in_ProcessCode,&#xD;&#xA;in_reference,&#xD;&#xA;in_startTime,&#xD;&#xA;EndTime,&#xD;&#xA;elapsedTime.ToString,&#xD;&#xA;in_status,&#xD;&#xA;in_itemCount&#xD;&#xA;}]" DataTable="[in_logTable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
           <ui:InsertDataTable AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" ConnectionString="[dbString]" DataTable="[in_logTable]" DisplayName="Insert row to DB" sap:VirtualizedContainerService.HintSize="334,114.666666666667" sap2010:WorkflowViewState.IdRef="InsertDataTable_1" ProviderName="Microsoft.Data.SqlClient" TableName="UiPath_CustomLogs" />
           <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Logs added successfully&quot;]" />
         </Sequence>

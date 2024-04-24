@@ -88,7 +88,7 @@
         <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
         <av:Size x:Key="ShapeSize">60,74.6666666666667</av:Size>
         <x:Double x:Key="Width">687.99999999999989</x:Double>
-        <av:PointCollection x:Key="ConnectorLocation">300,77.1666666666667 300,117.166666666667</av:PointCollection>
+        <av:PointCollection x:Key="ConnectorLocation">300,77.1666666666667 300,113.666666666667</av:PointCollection>
         <x:Double x:Key="Height">840.8</x:Double>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
@@ -125,11 +125,24 @@
             </sap:WorkflowViewStateService.ViewState>
             <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke AddToLogTable workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Framework\AddToLogTable.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="s:DateTime" x:Key="in_startTime">[in_startTime]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_status">Success</InArgument>
-                <InArgument x:TypeArguments="x:Int32" x:Key="in_itemCount">1</InArgument>
-                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_LogTable">[in_logTable]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_Reference">[in_TransactionItem.Reference]</InArgument>
+                <InArgument x:TypeArguments="s:DateTime" x:Key="in_startTime">
+                  <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="in_startTime" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_status">
+                  <Literal x:TypeArguments="x:String">Success</Literal>
+                </InArgument>
+                <InArgument x:TypeArguments="x:Int32" x:Key="in_itemCount">
+                  <Literal x:TypeArguments="x:Int32" Value="1" />
+                </InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_LogTable">
+                  <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_logTable" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Reference">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.Reference" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_ProcessCode">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ProcessCode" />
+                </InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
             <If Condition="[in_TransactionItem isNot Nothing AndAlso (in_TransactionItem.GetType is GetType(Uipath.Core.QueueItem))]" DisplayName="If TransactionItem is a QueueItem (Success)" sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_2">
@@ -256,11 +269,24 @@
                 </sap:WorkflowViewStateService.ViewState>
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke AddToLogTable workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Framework\AddToLogTable.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_startTime">[in_startTime]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_status">Business Exception</InArgument>
-                    <InArgument x:TypeArguments="x:Int32" x:Key="in_itemCount">1</InArgument>
-                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_LogTable">[in_logTable]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_Reference">[in_TransactionItem.Reference]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_startTime">
+                      <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="in_startTime" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_status">
+                      <Literal x:TypeArguments="x:String">Business Exception</Literal>
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="in_itemCount">
+                      <Literal x:TypeArguments="x:Int32" Value="1" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_LogTable">
+                      <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_logTable" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_Reference">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.Reference" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_ProcessCode">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ProcessCode" />
+                    </InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
                 <If Condition="[in_TransactionItem isNot Nothing AndAlso (in_TransactionItem.GetType is GetType(Uipath.Core.QueueItem))]" DisplayName="If TransactionItem is a QueueItem (Business Exception)" sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_3">
@@ -325,7 +351,7 @@
                   <av:Size x:Key="ShapeSize">200,164.666666666667</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="If a system exception occurs during the process, the transaction item's status is updated as Failed (Exception Type: Application)." DisplayName="System Exception" sap:VirtualizedContainerService.HintSize="526,1698" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence sap2010:Annotation.AnnotationText="If a system exception occurs during the process, the transaction item's status is updated as Failed (Exception Type: Application)." DisplayName="System Exception" sap:VirtualizedContainerService.HintSize="200,164.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_5">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Boolean" Name="QueueRetry" />
                 </Sequence.Variables>
@@ -338,35 +364,36 @@
                 </sap:WorkflowViewStateService.ViewState>
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke AddToLogTable workflow" sap:VirtualizedContainerService.HintSize="484,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Framework\AddToLogTable.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_startTime">[in_startTime]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_status">System Exception</InArgument>
-                    <InArgument x:TypeArguments="x:Int32" x:Key="in_itemCount">1</InArgument>
-                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_LogTable">[in_logTable]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_Reference">[in_TransactionItem.Reference]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="in_startTime">
+                      <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="in_startTime" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_status">
+                      <Literal x:TypeArguments="x:String">System Exception</Literal>
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="in_itemCount">
+                      <Literal x:TypeArguments="x:Int32" Value="1" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_LogTable">
+                      <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_logTable" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_Reference">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.Reference" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_ProcessCode">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ProcessCode" />
+                    </InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke SendEmail workflow" sap:VirtualizedContainerService.HintSize="484,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Framework\SendEmail.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="in_cc" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_subject">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ProcessCode + &quot; - Process failed with system exception&quot;" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_isScreenshot">
-                      <Literal x:TypeArguments="x:Boolean" Value="True" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_body">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Hi,&lt;br&gt;&lt;br&gt;Please find the error details below : &lt;br&gt;&lt;br&gt;Error:&quot; + in_SystemException.Message +&quot;&lt;br&gt;&quot; +&quot;Source:&quot; + in_SystemException.Source +&quot;&lt;br&gt;&quot; +&quot;Trace:&quot; + in_SystemException.StackTrace +&quot;&lt;br&gt;&lt;br&gt;Regards,&lt;br&gt;Bot&quot;" />
-                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_subject">[ProcessCode + " - Process failed with system exception"]</InArgument>
+                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_isScreenshot">True</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_body">["Hi,&lt;br&gt;&lt;br&gt;Please find the error details below : &lt;br&gt;&lt;br&gt;Error:" + in_SystemException.Message +"&lt;br&gt;" +"Source:" + in_SystemException.Source +"&lt;br&gt;" +"Trace:" + in_SystemException.StackTrace +"&lt;br&gt;&lt;br&gt;Regards,&lt;br&gt;Bot"]</InArgument>
                     <InArgument x:TypeArguments="s:String[]" x:Key="in_attachments" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_to">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;SE_MailTo&quot;).ToString" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_server">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;SMTP_HOST&quot;).ToString" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_credAsset">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;SMTP_CRED&quot;).ToString" />
-                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_to">[in_Config("SE_MailTo").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_server">[in_Config("SMTP_HOST").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_credAsset">[in_Config("SMTP_CRED").ToString]</InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
                 <Assign DisplayName="Assign QueryRetry" sap:VirtualizedContainerService.HintSize="484,62" sap2010:WorkflowViewState.IdRef="Assign_33">
@@ -557,19 +584,23 @@
     <FlowStep x:Name="__ReferenceID6">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">169,117.166666666667</av:Point>
-          <av:Size x:Key="ShapeSize">262,62</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">300,179.166666666667 300,209.166666666667 299.8,209.166666666667 299.8,216.4</av:PointCollection>
+          <av:Point x:Key="ShapeLocation">200,113.666666666667</av:Point>
+          <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">300,166.333333333333 300,196.333333333333 299.8,196.333333333333 299.8,216.4</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign DisplayName="Assign ProcessCode" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_34">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[ProcessCode]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[regex.Match(environment.CurrentDirectory,"[^\\]+$").ToString]</InArgument>
-        </Assign.Value>
-      </Assign>
+      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Get Project Name" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Framework\GetProjectName.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_projectName">
+            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="ProcessCode" />
+          </OutArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:InvokeWorkflowFile>
       <FlowStep.Next>
         <x:Reference>__ReferenceID5</x:Reference>
       </FlowStep.Next>
